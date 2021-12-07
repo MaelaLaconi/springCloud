@@ -20,6 +20,8 @@ public class InitBD implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         String sqlStatement[] = {
+                "drop table MUSIQUE if exists",
+                "create table MUSIQUE(id serial, titre varchar(255), chanteur varchar(255))",
                 "INSERT INTO MUSIQUE (titre, chanteur) VALUES('Add it up', 'Violent Femmes');",
                 "INSERT INTO MUSIQUE (titre, chanteur) VALUES('Anonymous', 'Saltriver');",
                 "INSERT INTO MUSIQUE (titre, chanteur) VALUES('Cendres', 'MPL');",
@@ -33,7 +35,7 @@ public class InitBD implements CommandLineRunner {
 
         System.out.println("Affiche toutes les Musiques dans musique ---------------------------------------");
 
-        jdbcTemplate.query("select * from musique",
+        jdbcTemplate.query("select * from MUSIQUE",
                 new RowMapper<Object>() {
                     @Override
                     public Object mapRow(ResultSet musique, int rowNum) throws SQLException {
