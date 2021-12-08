@@ -5,6 +5,7 @@ package com.masteril.demo.controller;
 import com.masteril.demo.dao.MusiqueRepository;
 import com.masteril.demo.model.Musique;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public class MusiqueController {
 
     @Autowired
     private MusiqueRepository dao;
+
+    @Value("$me")
+    private String me;
 
     /**
      * display all the music
@@ -63,4 +67,12 @@ public class MusiqueController {
         dao.deleteById(id);
     }
 
+    /**
+     * display the property link to "/Cestqui"
+     * @return
+     */
+    @GetMapping(value = "/Cestqui")
+    public String getName(){
+        return me;
+    }
 }
